@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    .square {
+      height: 50px;
+      width: 50px;
+      background-color: lightblue;
+      margin: 5px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color: black;
+    }
+    .container {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin:10px;
+    }
+    .input {
+      display:flex;
+      width:100%;
+    }
+    </style>
+</head>
+
+<body>
+  <h2> Welcome to the best game ever! 🎯 </h2>
+  <h4> Start new games </h4>
+  <div class='container'>
+  <% @letters.each do |letter| %>
+  <div class="square">
+    <div><%= letter %></div>
+  </div>
+  <% end %>
+  </div>
+  <div class='container'>
+  <form action="/score" method="post" data-turbo="false">
+    <input type="text" name="word" placeholder="What is the longest word you can find?">
+    <input type="submit" value="Play">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :grid, @letters %>
+  </form>
+  </div>
+
+</body>
